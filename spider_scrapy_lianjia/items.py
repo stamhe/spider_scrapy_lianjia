@@ -5,10 +5,16 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
 
 
-class SpiderScrapyLianjiaItem(scrapy.Item):
+class SpiderScrapyLianjiaItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    xiaoqu_id   = Field()       # 小区id
+    house_id    = Field()       # 链家房源编号
+    title       = Field()       # 标题
+    price       = Field()       # 价格
+    #size        = Field()       # 面积
+    view_count  = Field()       # 带看次数
+

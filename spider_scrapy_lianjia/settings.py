@@ -9,7 +9,8 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'spider_scrapy_lianjia'
+#BOT_NAME = 'spider_scrapy_lianjia'
+BOT_NAME = 'lianjia_spider'
 
 SPIDER_MODULES = ['spider_scrapy_lianjia.spiders']
 NEWSPIDER_MODULE = 'spider_scrapy_lianjia.spiders'
@@ -64,9 +65,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'spider_scrapy_lianjia.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'spider_scrapy_lianjia.pipelines.SpiderScrapyLianjiaPipeline': 1,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
