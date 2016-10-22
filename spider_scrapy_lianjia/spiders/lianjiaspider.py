@@ -16,7 +16,7 @@ from spider_scrapy_lianjia.items import SpiderScrapyLianjiaItem
 
 class lianjia_spider(CrawlSpider):
     # 爬虫的识别名称，必须是唯一的，在不同的爬虫中你必须定义不同的名字
-    name = "lianjiaspider"    # 设置爬虫名称
+    name = "lianjia_house_spider"    # 设置爬虫名称
 
     # 搜索的域名范围，也就是爬虫的约束区域，规定爬虫只爬取这个域名下的网页
     allowed_domains = ["lianjia.com"] # 设置允许的域名
