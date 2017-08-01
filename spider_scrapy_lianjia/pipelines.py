@@ -16,7 +16,7 @@ class SpiderScrapyLianjiaPipeline(object):
     def __init__(self):
         self.conn = MySQLdb.connect(host='127.0.0.1',port=3306,user='root',passwd='123456', charset='utf8')
         self.conn.autocommit(True)
-        self.conn.select_db('lianjia')
+        self.conn.select_db('db_dianping_xmt')
     def process_item(self, item, spider):
         cursor=self.conn.cursor()
         data = []
@@ -37,6 +37,16 @@ class SpiderScrapyLianjiaPipeline(object):
             data.append(item['view_last_day'])
             data.append(date_time)
             cursor.execute('replace into t_ershoufang_chenshi (chenshi_name, avg_price, onsale_count, sold_last_month, view_last_day, spider_date) values (%s, %s, %s, %s, %s, %s)', data)
+        elif spider.name == 'dianping_xmt_spider':
+            data.append(item['chenshi_name'])
+            data.append(item['shop_type'])
+            data.append(item['shop_url'])
+            data.append(item['shop_name'])
+            data.append(item['shop_addr'])
+            data.append(item['shop_mobile'])
+            data.append(item['shop_intro'])
+            data.append(date_time)
+            cursor.execute('replace into t_dianping_xmt_spider (chenshi_name, shop_type, shop_url, shop_name, shop_addr, shop_mobile, shop_intro, spider_date) values (%s, %s, %s, %s, %s, %s, %s, %s)', data)
 
         cursor.close()
         return item
