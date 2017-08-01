@@ -26,8 +26,16 @@ class dianping_xmt_spider(CrawlSpider):
 
     # 爬取的url列表，爬虫从这里开始抓取数据，所以，第一次下载的数据将会从这些urls开始，其他子url将会从这些起始url中继承性生成
     start_urls = [
-        'http://www.dianping.com/search/category/1/75/g2878',
+        #'http://www.dianping.com/search/category/1/75/g2878', # 兴趣生活 shop_type = 1
+        #'http://www.dianping.com/search/category/1/75/g2872', # 外语培训 shop_type = 2
+        #'http://www.dianping.com/search/category/1/75/g2873', # 音乐培训 shop_type = 3
+        #'http://www.dianping.com/search/category/1/75/g2876', # 升学辅导shop_type = 4
+        #'http://www.dianping.com/search/category/1/75/g2874', # 美术培训shop_type = 5
+        #'http://www.dianping.com/search/category/1/75/g32722', # 留学 shop_type = 6
+        'http://www.dianping.com/search/category/1/75/g2882', # 其他 shop_type = 7
     ]
+
+    shop_type = 7
 
     def parse(self, response):
         sel = Selector(response)
@@ -56,7 +64,7 @@ class dianping_xmt_spider(CrawlSpider):
         item = SpiderDianpingXmtItem()
 
         chenshi_name= '上海'
-        shop_type   = 1
+        shop_type   = self.shop_type
         shop_url    = response.url
 
         shop_name   = sel.xpath('//div[@class="shop-name"]/h1/text()').extract()[0].strip()
