@@ -3,6 +3,7 @@
 
 import random
 import base64
+import requests
 
 from settings import PROXIES
 
@@ -22,6 +23,16 @@ class RandomUserAgent(object):
 
 class ProxyMiddleware(object):
     def process_request(self, request, spider):
+        ret = requests.get('http://dps.kuaidaili.com/api/getdps/?orderid=960159128103432&num=50&ut=1&sep=3')
+        if ret.status_code != 200:
+            ret = requests.get('http://dps.kuaidaili.com/api/getdps/?orderid=960159128103432&num=50&ut=1&sep=3')
+
+        proxy_list = ret.text.split(" ")
+        proxy = random.choice(proxy_list)
+        request.meta['proxy'] = "http://%s" % proxy
+
+        return
+
         proxy = random.choice(PROXIES)
         request.meta['proxy'] = "http://%s" % proxy
         return
@@ -34,6 +45,8 @@ class ProxyMiddleware(object):
         else:
             print "**************ProxyMiddleware no pass************" + proxy['ip_port']
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
+
+        return
 
 
 
