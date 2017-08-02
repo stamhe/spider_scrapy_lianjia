@@ -1,0 +1,52 @@
+nohup.out
+#composer.lock
+# yii console command
+/yii
+
+# phpstorm project files
+.idea
+
+# netbeans project files
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+
+# windows thumbnail cache
+Thumbs.db
+
+# composer vendor dir
+/vendor
+
+# composer itself is not needed
+composer.phar
+
+# Mac DS_Store Files
+.DS_Store
+
+# phpunit itself is not needed
+phpunit.phar
+
+# local phpunit config
+/phpunit.xml
+crm/runtime/*
+manager/runtime/*
+admin_styd/runtime/*
+wenda/runtime/*
+composer.lock
+
+# grunt tools
+/manager/grunt
+**/grunt
+# vim swp file
+*.swp
+tags
+
+#seo
+wap/web/sitemap/*
+# 忽略测试文件
+saas/controllers/test
+
+spider_scrapy_lianjia/pipelines.py

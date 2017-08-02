@@ -14,7 +14,7 @@ import time
 
 class SpiderScrapyLianjiaPipeline(object):
     def __init__(self):
-        self.conn = MySQLdb.connect(host='10.10.59.7',port=3306,user='root',passwd='yqqlmGSYCL', charset='utf8')
+        self.conn = MySQLdb.connect(host='127.0.0.1',port=3306,user='root',passwd='123456', charset='utf8')
         self.conn.autocommit(True)
         self.conn.select_db('db_dianping_xmt')
     def process_item(self, item, spider):
