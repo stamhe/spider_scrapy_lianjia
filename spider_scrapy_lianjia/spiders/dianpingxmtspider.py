@@ -74,11 +74,19 @@ class dianping_xmt_spider(CrawlSpider):
         self.log("shop_addr = %s" % shop_addr)
 
         x = sel.xpath('//div[@class="phone"]/span')
-        shop_mobile = x[0].xpath('@data-phone').extract()[0]
+        if len(x) == 0:
+            shop_mobile=0
+        else:
+            shop_mobile = x[0].xpath('@data-phone').extract()[0]
+
         self.log("shop_mobile = %s" % shop_mobile)
 
         x = sel.xpath('//div[@class="mod shop-info"]/ul/li')
-        shop_intro = x[1].xpath('text()').extract()[1].strip()
+        if len(x) < 2:
+            shop_intro=""
+        else:
+            shop_intro = x[1].xpath('text()').extract()[1].strip()
+
         self.log("shop_intro = %s" % shop_intro)
 
         item['chenshi_name']    = chenshi_name
