@@ -29,6 +29,7 @@ class ProxyMiddleware(object):
 
         proxy_list = ret.text.split(" ")
         proxy = random.choice(proxy_list)
+        print "proxy_server = %s" % proxy
         request.meta['proxy'] = "http://%s" % proxy
 
         return
