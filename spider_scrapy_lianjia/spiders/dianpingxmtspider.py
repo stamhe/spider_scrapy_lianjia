@@ -23,8 +23,9 @@ class dianping_xmt_spider(CrawlSpider):
 
     # 搜索的域名范围，也就是爬虫的约束区域，规定爬虫只爬取这个域名下的网页
     allowed_domains = ["dianping.com"] # 设置允许的域名
+
     # 外语培训
-    # 1001 英语 1002 日语 1004 韩语 1009 汉语 1006 法语 1008 德语 1007 西班牙语 1010 俄语 1100 其他
+    # 1001 英语 1002 日语 1004 韩语 1009 汉语 1006 法语 1008 德语 1007 西班牙语 10755 俄语 1100 其他
 
     # 音乐培训
     # 2001 钢琴 2002 吉他 2003 古筝 2004 架子鼓 2005 声乐 2006 小提琴 2100 其他音乐培训
@@ -49,112 +50,118 @@ class dianping_xmt_spider(CrawlSpider):
 
 
     # 城市
-    # 021 上海 010 北京 020 广州 0755 深圳 028 成都
+    # 021 上海 0755 北京 028 成都
 
     # 爬取的url列表，爬虫从这里开始抓取数据，所以，第一次下载的数据将会从这些urls开始，其他子url将会从这些起始url中继承性生成
     start_urls = [
         # 外语培训
-        'http://www.dianping.com/search/category/6/75/g3030', # 英语
-        'http://www.dianping.com/search/category/6/75/g3032', # 日语
-        'http://www.dianping.com/search/category/6/75/g3034', # 韩语
-        'http://www.dianping.com/search/category/6/75/g3039', # 汉语
-        'http://www.dianping.com/search/category/6/75/g3036', # 法语
-        'http://www.dianping.com/search/category/6/75/g3038', # 德语
-        'http://www.dianping.com/search/category/6/75/g3040', # 其他外语
+        'http://www.dianping.com/search/category/7/75/g3030',
+        'http://www.dianping.com/search/category/7/75/g3032',
+        'http://www.dianping.com/search/category/7/75/g3034',
+        'http://www.dianping.com/search/category/7/75/g3039',
+        'http://www.dianping.com/search/category/7/75/g3036',
+        'http://www.dianping.com/search/category/7/75/g3038',
+        'http://www.dianping.com/search/category/7/75/g33816',
+        'http://www.dianping.com/search/category/7/75/g3040',
 
         # 音乐培训
-        'http://www.dianping.com/search/category/6/75/g3041', # 钢琴
-        'http://www.dianping.com/search/category/6/75/g3042', # 吉他
-        'http://www.dianping.com/search/category/6/75/g3044', # 古筝
-        'http://www.dianping.com/search/category/6/75/g3046', # 架子鼓
-        'http://www.dianping.com/search/category/6/75/g3048', # 声乐
-        'http://www.dianping.com/search/category/6/75/g3043', # 小提琴
-        'http://www.dianping.com/search/category/6/75/g3050', # 其他音乐培训
+        'http://www.dianping.com/search/category/7/75/g3041', # 钢琴
+        'http://www.dianping.com/search/category/7/75/g3042', # 吉他
+        'http://www.dianping.com/search/category/7/75/g3044', # 古筝
+        'http://www.dianping.com/search/category/7/75/g3046', # 架子鼓
+        'http://www.dianping.com/search/category/7/75/g3048', # 声乐
+        'http://www.dianping.com/search/category/7/75/g3043', # 小提琴
+        'http://www.dianping.com/search/category/7/75/g3050', # 其他音乐培训
 
         # 职业技术
-        'http://www.dianping.com/search/category/6/75/g3057', # 美容美妆
-        'http://www.dianping.com/search/category/6/75/g3059', # IT
-        'http://www.dianping.com/search/category/6/75/g3058', # 会计
-        'http://www.dianping.com/search/category/6/75/g3060', # 厨艺
-        'http://www.dianping.com/search/category/6/75/g3062', # 其他职业培训
+        'http://www.dianping.com/search/category/7/75/g3057', # 美容美妆
+        'http://www.dianping.com/search/category/7/75/g3059', # IT
+        'http://www.dianping.com/search/category/7/75/g3058', # 会计
+        'http://www.dianping.com/search/category/7/75/g3060', # 厨艺
+        'http://www.dianping.com/search/category/7/75/g33814', # 摄影培训
+        'http://www.dianping.com/search/category/7/75/g3062', # 其他职业培训
 
         # 升学辅导
-        'http://www.dianping.com/search/category/6/75/g3052', # 小学辅导
-        'http://www.dianping.com/search/category/6/75/g3054', # 初中辅导
-        'http://www.dianping.com/search/category/6/75/g3055', # 高中辅导
-        'http://www.dianping.com/search/category/6/75/g33828', # 艺考
-        'http://www.dianping.com/search/category/6/75/g3056', # 其他升学辅导
+        'http://www.dianping.com/search/category/7/75/g3052', # 小学辅导
+        'http://www.dianping.com/search/category/7/75/g3054', # 中学辅导
+        'http://www.dianping.com/search/category/7/75/g3055', # 高中辅导
+        'http://www.dianping.com/search/category/7/75/g33817', # 专升本/自考
+        'http://www.dianping.com/search/category/7/75/g33828', # 艺考
+        'http://www.dianping.com/search/category/7/75/g3056', # 其他升学辅导
 
         # 美术培训
-        'http://www.dianping.com/search/category/6/75/g33756', # 绘画
-        'http://www.dianping.com/search/category/6/75/g33757', # 书法
-        'http://www.dianping.com/search/category/6/75/g33758', # 其他美术培训
+        'http://www.dianping.com/search/category/7/75/g33756', # 绘画
+        'http://www.dianping.com/search/category/7/75/g33757', # 书法
+        'http://www.dianping.com/search/category/7/75/g33758', # 其他美术培训
 
         # 兴趣生活
-        'http://www.dianping.com/search/category/6/75/g33900', # 棋牌培训
-        'http://www.dianping.com/search/category/6/75/g33897', # 烘焙培训
-        'http://www.dianping.com/search/category/6/75/g33898', # 插花培训
-        'http://www.dianping.com/search/category/6/75/g33899', # 手工培训
-        'http://www.dianping.com/search/category/6/75/g33901', # 其他兴趣生活
+        'http://www.dianping.com/search/category/7/75/g33900', # 棋牌培训
+        'http://www.dianping.com/search/category/7/75/g33897', # 烘焙培训
+        'http://www.dianping.com/search/category/7/75/g33898', # 插花培训
+        'http://www.dianping.com/search/category/7/75/g33899', # 手工培训
+        'http://www.dianping.com/search/category/7/75/g33901', # 其他兴趣生活
 
         # 留学
-        'http://www.dianping.com/search/category/6/75/g33945', # 留学申请
-        'http://www.dianping.com/search/category/6/75/g33946', # 雅思托福
-        'http://www.dianping.com/search/category/6/75/g33947', # 其他留学服务
+        'http://www.dianping.com/search/category/7/75/g33945', # 留学申请
+        'http://www.dianping.com/search/category/7/75/g33946', # 雅思托福
+        'http://www.dianping.com/search/category/7/75/g33947', # 其他留学服务
         # 更多教育培训
-        'http://www.dianping.com/search/category/6/75/g2882', # 更多教育培训
+        'http://www.dianping.com/search/category/7/75/g2882', # 更多教育培训
         
     ]
 
     shop_type_map = {
         # 更多教育培训
-        'http://www.dianping.com/search/category/6/75/g2882' : {'city_id' : '0512', 'shop_type' : 8100},
+        'http://www.dianping.com/search/category/7/75/g2882' : {'city_id' : '0755', 'shop_type' : 8100},
 
         # 留学
-        'http://www.dianping.com/search/category/6/75/g33945' : {'city_id' : '0512', 'shop_type' : 7001},
-        'http://www.dianping.com/search/category/6/75/g33946' : {'city_id' : '0512', 'shop_type' : 7002},
-        'http://www.dianping.com/search/category/6/75/g33947' : {'city_id' : '0512', 'shop_type' : 7100},
+        'http://www.dianping.com/search/category/7/75/g33945' : {'city_id' : '0755', 'shop_type' : 7001},
+        'http://www.dianping.com/search/category/7/75/g33946' : {'city_id' : '0755', 'shop_type' : 7002},
+        'http://www.dianping.com/search/category/7/75/g33947' : {'city_id' : '0755', 'shop_type' : 7100},
         # 兴趣生活
-        'http://www.dianping.com/search/category/6/75/g33900' : {'city_id' : '0512', 'shop_type' : 6001},
-        'http://www.dianping.com/search/category/6/75/g33897' : {'city_id' : '0512', 'shop_type' : 6002},
-        'http://www.dianping.com/search/category/6/75/g33898' : {'city_id' : '0512', 'shop_type' : 6003},
-        'http://www.dianping.com/search/category/6/75/g33899' : {'city_id' : '0512', 'shop_type' : 6004},
-        'http://www.dianping.com/search/category/6/75/g33901' : {'city_id' : '0512', 'shop_type' : 6100},
+        'http://www.dianping.com/search/category/7/75/g33900' : {'city_id' : '0755', 'shop_type' : 6001},
+        'http://www.dianping.com/search/category/7/75/g33897' : {'city_id' : '0755', 'shop_type' : 6002},
+        'http://www.dianping.com/search/category/7/75/g33898' : {'city_id' : '0755', 'shop_type' : 6003},
+        'http://www.dianping.com/search/category/7/75/g33899' : {'city_id' : '0755', 'shop_type' : 6004},
+        'http://www.dianping.com/search/category/7/75/g33901' : {'city_id' : '0755', 'shop_type' : 6100},
         # 美术培训
-        'http://www.dianping.com/search/category/6/75/g33756' : {'city_id' : '0512', 'shop_type' : 5001},
-        'http://www.dianping.com/search/category/6/75/g33757' : {'city_id' : '0512', 'shop_type' : 5002},
-        'http://www.dianping.com/search/category/6/75/g33758' : {'city_id' : '0512', 'shop_type' : 5100},
+        'http://www.dianping.com/search/category/7/75/g33756' : {'city_id' : '0755', 'shop_type' : 5001},
+        'http://www.dianping.com/search/category/7/75/g33757' : {'city_id' : '0755', 'shop_type' : 5002},
+        'http://www.dianping.com/search/category/7/75/g33758' : {'city_id' : '0755', 'shop_type' : 5100},
         # 外语培训
-        'http://www.dianping.com/search/category/6/75/g3030' : {'city_id' : '0512', 'shop_type' : 1001},
-        'http://www.dianping.com/search/category/6/75/g3032' : {'city_id' : '0512', 'shop_type' : 1002},
-        'http://www.dianping.com/search/category/6/75/g3034' : {'city_id' : '0512', 'shop_type' : 1004},
-        'http://www.dianping.com/search/category/6/75/g3039' : {'city_id' : '0512', 'shop_type' : 1009},
-        'http://www.dianping.com/search/category/6/75/g3036' : {'city_id' : '0512', 'shop_type' : 1006},
-        'http://www.dianping.com/search/category/6/75/g3038' : {'city_id' : '0512', 'shop_type' : 1008},
-        'http://www.dianping.com/search/category/6/75/g3040' : {'city_id' : '0512', 'shop_type' : 1100},
+        'http://www.dianping.com/search/category/7/75/g3030' : {'city_id' : '0755', 'shop_type' : 1001},
+        'http://www.dianping.com/search/category/7/75/g3032' : {'city_id' : '0755', 'shop_type' : 1002},
+        'http://www.dianping.com/search/category/7/75/g3034' : {'city_id' : '0755', 'shop_type' : 1004},
+        'http://www.dianping.com/search/category/7/75/g3039' : {'city_id' : '0755', 'shop_type' : 1009},
+        'http://www.dianping.com/search/category/7/75/g3036' : {'city_id' : '0755', 'shop_type' : 1006},
+        'http://www.dianping.com/search/category/7/75/g3038' : {'city_id' : '0755', 'shop_type' : 1008},
+        'http://www.dianping.com/search/category/7/75/g33816' : {'city_id' : '0755', 'shop_type' : 1007},
+        'http://www.dianping.com/search/category/7/75/g3040' : {'city_id' : '0755', 'shop_type' : 1100},
 
         # 音乐培训
-        'http://www.dianping.com/search/category/6/75/g3041' : {'city_id' : '0512', 'shop_type' : 2001},
-        'http://www.dianping.com/search/category/6/75/g3042' : {'city_id' : '0512', 'shop_type' : 2002},
-        'http://www.dianping.com/search/category/6/75/g3044' : {'city_id' : '0512', 'shop_type' : 2003},
-        'http://www.dianping.com/search/category/6/75/g3046' : {'city_id' : '0512', 'shop_type' : 2004},
-        'http://www.dianping.com/search/category/6/75/g3048' : {'city_id' : '0512', 'shop_type' : 2005},
-        'http://www.dianping.com/search/category/6/75/g3043' : {'city_id' : '0512', 'shop_type' : 2006},
-        'http://www.dianping.com/search/category/6/75/g3050' : {'city_id' : '0512', 'shop_type' : 2100},
+        'http://www.dianping.com/search/category/7/75/g3041' : {'city_id' : '0755', 'shop_type' : 2001},
+        'http://www.dianping.com/search/category/7/75/g3042' : {'city_id' : '0755', 'shop_type' : 2002},
+        'http://www.dianping.com/search/category/7/75/g3044' : {'city_id' : '0755', 'shop_type' : 2003},
+        'http://www.dianping.com/search/category/7/75/g3046' : {'city_id' : '0755', 'shop_type' : 2004},
+        'http://www.dianping.com/search/category/7/75/g3048' : {'city_id' : '0755', 'shop_type' : 2005},
+        'http://www.dianping.com/search/category/7/75/g3043' : {'city_id' : '0755', 'shop_type' : 2006},
+        'http://www.dianping.com/search/category/7/75/g3050' : {'city_id' : '0755', 'shop_type' : 2100},
 
         # 职业技术
-        'http://www.dianping.com/search/category/6/75/g3057' : {'city_id' : '0512', 'shop_type' : 3001},
-        'http://www.dianping.com/search/category/6/75/g3059' : {'city_id' : '0512', 'shop_type' : 3002},
-        'http://www.dianping.com/search/category/6/75/g3058' : {'city_id' : '0512', 'shop_type' : 3003},
-        'http://www.dianping.com/search/category/6/75/g3060' : {'city_id' : '0512', 'shop_type' : 3004},
-        'http://www.dianping.com/search/category/6/75/g3062' : {'city_id' : '0512', 'shop_type' : 3100},
+        'http://www.dianping.com/search/category/7/75/g3057' : {'city_id' : '0755', 'shop_type' : 3001},
+        'http://www.dianping.com/search/category/7/75/g3059' : {'city_id' : '0755', 'shop_type' : 3002},
+        'http://www.dianping.com/search/category/7/75/g3058' : {'city_id' : '0755', 'shop_type' : 3003},
+        'http://www.dianping.com/search/category/7/75/g3060' : {'city_id' : '0755', 'shop_type' : 3004},
+        'http://www.dianping.com/search/category/7/75/g33814' : {'city_id' : '0755', 'shop_type' : 3006},
+        'http://www.dianping.com/search/category/7/75/g3062' : {'city_id' : '0755', 'shop_type' : 3100},
 
         # 升学辅导
-        'http://www.dianping.com/search/category/6/75/g3052' : {'city_id' : '0512', 'shop_type' : 4001},
-        'http://www.dianping.com/search/category/6/75/g3054' : {'city_id' : '0512', 'shop_type' : 4002},
-        'http://www.dianping.com/search/category/6/75/g3055' : {'city_id' : '0512', 'shop_type' : 4003},
-        'http://www.dianping.com/search/category/6/75/g33828' : {'city_id' : '0512', 'shop_type' : 4005},
-        'http://www.dianping.com/search/category/6/75/g3056' : {'city_id' :  '0512', 'shop_type' : 4100},
+        'http://www.dianping.com/search/category/7/75/g3052' : {'city_id' : '0755', 'shop_type' : 4001},
+        'http://www.dianping.com/search/category/7/75/g3054' : {'city_id' : '0755', 'shop_type' : 4002},
+        'http://www.dianping.com/search/category/7/75/g3055' : {'city_id' : '0755', 'shop_type' : 4003},
+        'http://www.dianping.com/search/category/7/75/g33817' : {'city_id' : '0755', 'shop_type' : 4004},
+        'http://www.dianping.com/search/category/7/75/g33828' : {'city_id' : '0755', 'shop_type' : 4005},
+        'http://www.dianping.com/search/category/7/75/g3056' : {'city_id' :  '0755', 'shop_type' : 4100},
     }
 
 
