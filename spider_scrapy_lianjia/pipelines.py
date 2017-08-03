@@ -18,6 +18,9 @@ class SpiderScrapyLianjiaPipeline(object):
         self.conn.autocommit(True)
         self.conn.select_db('db_dianping_xmt')
     def process_item(self, item, spider):
+        if not item:
+            return item
+
         cursor=self.conn.cursor()
         data = []
         date_time = time.strftime("%Y-%m-%d", time.localtime())

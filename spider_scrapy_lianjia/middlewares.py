@@ -29,8 +29,15 @@ class ProxyMiddleware(object):
 
         proxy_list = ret.text.split(" ")
         proxy = random.choice(proxy_list)
-        print "proxy_server = %s" % proxy
+        #print "url = %s proxy_server = %s" % (request.url, proxy)
+        request.meta['proxy'] = "http://hequan:2mjhm256@%s" % proxy
+        return None
+
         request.meta['proxy'] = "http://%s" % proxy
+        # 添加账号密码，如果不用账号密码，则下面的代码删除即可
+        proxy_user_pass = "hequan:2mjhm256"
+        encoded_user_pass = base64.encodestring(proxy_user_pass)
+        request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
 
         return
 

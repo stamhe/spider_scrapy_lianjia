@@ -41,16 +41,26 @@ USER_AGENTS = [
 #ROBOTSTXT_OBEY = True
 ROBOTSTXT_OBEY = False
 
-# Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
-
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 3
-# The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
-#CONCURRENT_REQUESTS_PER_IP = 16
+
+# 下载超时
+DOWNLOAD_TIMEOUT = 30
+
+# 默认Item并发数：100
+#CONCURRENT_ITEMS = 100
+
+# 默认Request并发数：16
+#CONCURRENT_REQUESTS = 16
+
+# 默认每个域名的并发数：8
+#CONCURRENT_REQUESTS_PER_DOMAIN = 8
+
+# 每个IP的最大并发数：0表示忽略
+#CONCURRENT_REQUESTS_PER_IP = 0
+
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
@@ -70,13 +80,21 @@ COOKIES_ENABLED = False
 #    'spider_scrapy_lianjia.middlewares.MyCustomSpiderMiddleware': 543,
 #}
 
+# 是否可以重试
+RETRY_ENABLED = True
+RETRY_TIMES = 5
+RETRY_HTTP_CODES = [407,500,502,503,504, 403]
+
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-    'spider_scrapy_lianjia.middlewares.RandomUserAgent': 1,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware' : 90,
+    'spider_scrapy_lianjia.middlewares.RandomUserAgent': 99,
     'spider_scrapy_lianjia.middlewares.ProxyMiddleware': 100,
+    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
 }
+
+#HTTPERROR_ALLOWED_CODES = [200]
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -131,3 +149,5 @@ PROXIES = [
 '183.149.239.235:15312',
 '42.227.127.183:23842',
 ]
+
+
