@@ -40,7 +40,7 @@ class SpiderScrapyLianjiaPipeline(object):
             data.append(item['view_last_day'])
             data.append(date_time)
             cursor.execute('replace into t_ershoufang_chenshi (chenshi_name, avg_price, onsale_count, sold_last_month, view_last_day, spider_date) values (%s, %s, %s, %s, %s, %s)', data)
-        elif spider.name == 'dianping_xmt_spider':
+        elif spider.name == 'dianping_xmt_spider' or spider.name == 'dianping_xmt_baby_spider':
             data.append(item['chenshi_name'])
             data.append(item['shop_type'])
             data.append(item['shop_url'])
