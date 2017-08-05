@@ -82,9 +82,20 @@ class dianping_xmt_baby_spider(CrawlSpider):
         # 其他亲子服务
 	'http://www.dianping.com/search/category/1/70/g33810', # 其他亲子服务
 	'http://www.dianping.com/search/category/1/70/g2833', # 婴儿理发
+        # 幼儿教育
+	'http://www.dianping.com/search/category/2/70/g33778', # 综合教育
+	'http://www.dianping.com/search/category/2/70/g33779', # 幼升小辅导
+	'http://www.dianping.com/search/category/2/70/g33856', # 教育机器人
+	'http://www.dianping.com/search/category/2/70/g2995', # 乐高
     ]
 
     shop_type_map = {
+        # 幼儿教育
+        'http://www.dianping.com/search/category/1/70/g33778' : {'city_id' : '021', 'shop_type' : 100001},
+        'http://www.dianping.com/search/category/1/70/g33779' : {'city_id' : '021', 'shop_type' : 100002},
+        'http://www.dianping.com/search/category/1/70/g33856' : {'city_id' : '021', 'shop_type' : 100003},
+        'http://www.dianping.com/search/category/1/70/g2995'  : {'city_id' : '021', 'shop_type' : 100004},
+
         # 其他亲子服务
         'http://www.dianping.com/search/category/1/70/g33810' : {'city_id' : '021', 'shop_type' : 90001},
         'http://www.dianping.com/search/category/1/70/g2833'  : {'city_id' : '021', 'shop_type' : 90002},
