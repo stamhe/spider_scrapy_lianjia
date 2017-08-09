@@ -82,7 +82,7 @@ COOKIES_ENABLED = False
 
 # 是否可以重试
 RETRY_ENABLED = True
-RETRY_TIMES = 5
+RETRY_TIMES = 10
 RETRY_HTTP_CODES = [407,500,502,503,504, 403]
 
 # Enable or disable downloader middlewares
