@@ -28,36 +28,9 @@ class dianping_xmt_baby_spider(CrawlSpider):
     start_urls = [
         # 早教中心
         'http://www.dianping.com/search/category/1/70/g27761', # 所有的早教
-
-        # 幼儿外语
-        'http://www.dianping.com/search/category/1/70/g27762',  # 所有的幼儿外语
-
-        # 幼儿才艺
-        'http://www.dianping.com/search/category/1/70/g27763', # 所有的幼儿才艺
-
-        # 幼儿园
-	'http://www.dianping.com/search/category/1/70/g189', # 所有的幼儿园
-
-        # 托班/托儿所
-        'http://www.dianping.com/search/category/1/70/g20009', # 所有的托班
-
-        # 婴儿游泳
-	'http://www.dianping.com/search/category/1/70/g27767', # 婴儿游泳
-
-        # 亲子游乐
-        'http://www.dianping.com/search/category/1/70/g161',    # 所有的亲子游乐
-
-        # 亲子旅游
-	'http://www.dianping.com/search/category/1/70/g33808', # 亲子旅游
-        # 其他亲子服务
-	'http://www.dianping.com/search/category/1/70/g27769', # 其他亲子服务
-
-        # 幼儿教育
-	'http://www.dianping.com/search/category/1/70/g188', # 所有的幼儿教育
     ]
 
     city_map = {
-        '''
         "1"     : "021", # 上海
         "2"     : "010", # 北京
         "4"     : "020", # 广州
@@ -95,7 +68,6 @@ class dianping_xmt_baby_spider(CrawlSpider):
         "101"     : "0577", # 温州
         "148"     : "0535", # 烟台
         "152"     : "0631", # 威海
-        '''
         "94"     : "0513", # 南通
     }
 
@@ -129,9 +101,9 @@ class dianping_xmt_baby_spider(CrawlSpider):
 
     def parse(self, response):
         sel = Selector(response)
-        for city_id,quhao in city_map.items():
-            for cat_id,shop_type in shop_type_map.items():
-                cat_url = 'http://www.dianping.com/search/category/' + city_id + '/70/' + cat_id
+        for bianhao,city_id in self.city_map.items():
+            for cat_id,shop_type in self.shop_type_map.items():
+                cat_url = 'http://www.dianping.com/search/category/' + bianhao + '/70/' + cat_id
                 yield scrapy.Request(cat_url, callback=self.parse_category, meta={'shop_type':shop_type, 'city_id' : city_id})
 
     def parse_category(self, response):
@@ -195,6 +167,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
         shop_url    = response.url
         http_status = response.status
 
+        self.log("chenshi_name = %s" % chenshi_name)
         self.log("shop_url = %s" % shop_url)
         self.log("shop_type = %s" % shop_type)
         self.log("http_status = %s" % http_status)
