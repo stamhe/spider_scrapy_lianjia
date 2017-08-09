@@ -50,8 +50,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
         # 亲子旅游
 	'http://www.dianping.com/search/category/4/70/g33808', # 亲子旅游
         # 其他亲子服务
-	'http://www.dianping.com/search/category/4/70/g33810', # 其他亲子服务
-	'http://www.dianping.com/search/category/4/70/g2833', # 婴儿理发
+	'http://www.dianping.com/search/category/4/70/g27769', # 更多的亲子服务
 
         # 幼儿教育
 	'http://www.dianping.com/search/category/4/70/g188', # 所有的幼儿教育
@@ -67,6 +66,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
         # 其他亲子服务
         'http://www.dianping.com/search/category/4/70/g33810' : {'city_id' : '020', 'shop_type' : 90001},
         'http://www.dianping.com/search/category/4/70/g2833'  : {'city_id' : '020', 'shop_type' : 90002},
+        'http://www.dianping.com/search/category/4/70/g27769'  : {'city_id' : '020', 'shop_type' : 91000},
         # 亲子旅游
         'http://www.dianping.com/search/category/4/70/g33808' : {'city_id' : '020', 'shop_type' : 80001},
         # 亲子游乐
@@ -83,6 +83,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
         'http://www.dianping.com/search/category/4/70/g33800' : {'city_id' : '020', 'shop_type' : 50001},
         'http://www.dianping.com/search/category/4/70/g33801' : {'city_id' : '020', 'shop_type' : 50002},
         'http://www.dianping.com/search/category/4/70/g33802' : {'city_id' : '020', 'shop_type' : 50003},
+        'http://www.dianping.com/search/category/4/70/g20009' : {'city_id' : '020', 'shop_type' : 51000},
         # 幼儿园
         'http://www.dianping.com/search/category/4/70/g27770' : {'city_id' : '020', 'shop_type' : 40001},
         'http://www.dianping.com/search/category/4/70/g27771' : {'city_id' : '020', 'shop_type' : 40002},

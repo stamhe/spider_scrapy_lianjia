@@ -26,105 +26,78 @@ class dianping_xmt_baby_spider(CrawlSpider):
 
     # 爬取的url列表，爬虫从这里开始抓取数据，所以，第一次下载的数据将会从这些urls开始，其他子url将会从这些起始url中继承性生成
     start_urls = [
-        # 早教中心
-	'http://www.dianping.com/search/category/1/70/g27761', # 所有的早教
-
-        # 幼儿外语
-        'http://www.dianping.com/search/category/1/70/g27762',  # 所有的幼儿外语
-
-        # 幼儿才艺
-        'http://www.dianping.com/search/category/1/70/g27763', # 所有的幼儿才艺
-
-        # 幼儿园
-	'http://www.dianping.com/search/category/1/70/g189', # 所有的幼儿园
-
         # 托班/托儿所
-        'http://www.dianping.com/search/category/1/70/g20009', # 所有的托班
+        'http://www.dianping.com/search/category/7/70/g20009', # 所有的托班
 
-        # 婴儿游泳
-	'http://www.dianping.com/search/category/1/70/g27767', # 婴儿游泳
-
-        # 亲子游乐
-        'http://www.dianping.com/search/category/1/70/g161',    # 所有的亲子游乐
-
-        # 亲子旅游
-	'http://www.dianping.com/search/category/1/70/g33808', # 亲子旅游
         # 其他亲子服务
-	'http://www.dianping.com/search/category/1/70/g27769', # 其他亲子服务
-
-        # 幼儿教育
-	'http://www.dianping.com/search/category/1/70/g188', # 所有的幼儿教育
+	'http://www.dianping.com/search/category/7/70/g27769', # 更多的亲子服务
     ]
 
     shop_type_map = {
         # 幼儿教育
-        'http://www.dianping.com/search/category/1/70/g33778' : {'city_id' : '021', 'shop_type' : 100001},
-        'http://www.dianping.com/search/category/1/70/g33779' : {'city_id' : '021', 'shop_type' : 100002},
-        'http://www.dianping.com/search/category/1/70/g33856' : {'city_id' : '021', 'shop_type' : 100003},
-        'http://www.dianping.com/search/category/1/70/g2995'  : {'city_id' : '021', 'shop_type' : 100004},
-        'http://www.dianping.com/search/category/1/70/g188'  : {'city_id' : '021', 'shop_type' : 110000},
-
+        'http://www.dianping.com/search/category/7/70/g33778' : {'city_id' : '0755', 'shop_type' : 100001},
+        'http://www.dianping.com/search/category/7/70/g33779' : {'city_id' : '0755', 'shop_type' : 100002},
+        'http://www.dianping.com/search/category/7/70/g33856' : {'city_id' : '0755', 'shop_type' : 100003},
+        'http://www.dianping.com/search/category/7/70/g2995'  : {'city_id' : '0755', 'shop_type' : 100004},
+        'http://www.dianping.com/search/category/7/70/g188'  : {'city_id' : '0755', 'shop_type' : 110000},
         # 其他亲子服务
-        'http://www.dianping.com/search/category/1/70/g33810' : {'city_id' : '021', 'shop_type' : 90001},
-        'http://www.dianping.com/search/category/1/70/g2833'  : {'city_id' : '021', 'shop_type' : 90002},
-        'http://www.dianping.com/search/category/1/70/g27769'  : {'city_id' : '021', 'shop_type' : 91000},
+        'http://www.dianping.com/search/category/7/70/g33810' : {'city_id' : '0755', 'shop_type' : 90001},
+        'http://www.dianping.com/search/category/7/70/g2833'  : {'city_id' : '0755', 'shop_type' : 90002},
+        'http://www.dianping.com/search/category/7/70/g27769'  : {'city_id' : '0755', 'shop_type' : 91000},
         # 亲子旅游
-        'http://www.dianping.com/search/category/1/70/g33808' : {'city_id' : '021', 'shop_type' : 80001},
+        'http://www.dianping.com/search/category/7/70/g33808' : {'city_id' : '0755', 'shop_type' : 80001},
         # 亲子游乐
-        'http://www.dianping.com/search/category/1/70/g27760' : {'city_id' : '021', 'shop_type' : 70001},
-        'http://www.dianping.com/search/category/1/70/g33775' : {'city_id' : '021', 'shop_type' : 70002},
-        'http://www.dianping.com/search/category/1/70/g33776' : {'city_id' : '021', 'shop_type' : 70003},
-        'http://www.dianping.com/search/category/1/70/g33777' : {'city_id' : '021', 'shop_type' : 70004},
-        'http://www.dianping.com/search/category/1/70/g161' : {'city_id' : '021', 'shop_type' : 71000},
+        'http://www.dianping.com/search/category/7/70/g27760' : {'city_id' : '0755', 'shop_type' : 70001},
+        'http://www.dianping.com/search/category/7/70/g33775' : {'city_id' : '0755', 'shop_type' : 70002},
+        'http://www.dianping.com/search/category/7/70/g33776' : {'city_id' : '0755', 'shop_type' : 70003},
+        'http://www.dianping.com/search/category/7/70/g33777' : {'city_id' : '0755', 'shop_type' : 70004},
+        'http://www.dianping.com/search/category/7/70/g161' : {'city_id' : '0755', 'shop_type' : 71000},
 
         # 婴儿游泳
-        'http://www.dianping.com/search/category/1/70/g27767' : {'city_id' : '021', 'shop_type' : 60001},
+        'http://www.dianping.com/search/category/7/70/g27767' : {'city_id' : '0755', 'shop_type' : 60001},
 
         # 托班/托儿所
-        'http://www.dianping.com/search/category/1/70/g33800' : {'city_id' : '021', 'shop_type' : 50001},
-        'http://www.dianping.com/search/category/1/70/g33801' : {'city_id' : '021', 'shop_type' : 50002},
-        'http://www.dianping.com/search/category/1/70/g33802' : {'city_id' : '021', 'shop_type' : 50003},
-        'http://www.dianping.com/search/category/1/70/g20009' : {'city_id' : '021', 'shop_type' : 51000},
+        'http://www.dianping.com/search/category/7/70/g20009' : {'city_id' : '0755', 'shop_type' : 51000},
         # 幼儿园
-        'http://www.dianping.com/search/category/1/70/g27770' : {'city_id' : '021', 'shop_type' : 40001},
-        'http://www.dianping.com/search/category/1/70/g27771' : {'city_id' : '021', 'shop_type' : 40002},
-        'http://www.dianping.com/search/category/1/70/g27772' : {'city_id' : '021', 'shop_type' : 40003},
-        'http://www.dianping.com/search/category/1/70/g27773' : {'city_id' : '021', 'shop_type' : 40004},
-        'http://www.dianping.com/search/category/1/70/g27774' : {'city_id' : '021', 'shop_type' : 40005},
-        'http://www.dianping.com/search/category/1/70/g189' : {'city_id' : '021', 'shop_type' : 41000},
+        'http://www.dianping.com/search/category/7/70/g27770' : {'city_id' : '0755', 'shop_type' : 40001},
+        'http://www.dianping.com/search/category/7/70/g27771' : {'city_id' : '0755', 'shop_type' : 40002},
+        'http://www.dianping.com/search/category/7/70/g27772' : {'city_id' : '0755', 'shop_type' : 40003},
+        'http://www.dianping.com/search/category/7/70/g27773' : {'city_id' : '0755', 'shop_type' : 40004},
+        'http://www.dianping.com/search/category/7/70/g27774' : {'city_id' : '0755', 'shop_type' : 40005},
+        'http://www.dianping.com/search/category/7/70/g189' : {'city_id' : '0755', 'shop_type' : 41000},
 
         # 幼儿才艺
-        'http://www.dianping.com/search/category/1/70/g33786' : {'city_id' : '021', 'shop_type' : 30001},
-        'http://www.dianping.com/search/category/1/70/g33787' : {'city_id' : '021', 'shop_type' : 30002},
-        'http://www.dianping.com/search/category/1/70/g33788' : {'city_id' : '021', 'shop_type' : 30003},
-        'http://www.dianping.com/search/category/1/70/g33789' : {'city_id' : '021', 'shop_type' : 30004},
-        'http://www.dianping.com/search/category/1/70/g33790' : {'city_id' : '021', 'shop_type' : 30005},
-        'http://www.dianping.com/search/category/1/70/g33791' : {'city_id' : '021', 'shop_type' : 30006},
-        'http://www.dianping.com/search/category/1/70/g2982'  : {'city_id' : '021', 'shop_type' : 30007},
-        'http://www.dianping.com/search/category/1/70/g2984'  : {'city_id' : '021', 'shop_type' : 30008},
-        'http://www.dianping.com/search/category/1/70/g2988'  : {'city_id' : '021', 'shop_type' : 30009},
-        'http://www.dianping.com/search/category/1/70/g2992'  : {'city_id' : '021', 'shop_type' : 30010},
-        'http://www.dianping.com/search/category/1/70/g2994'  : {'city_id' : '021', 'shop_type' : 30011},
-        'http://www.dianping.com/search/category/1/70/g27763'  : {'city_id' : '021', 'shop_type' : 31000},
+        'http://www.dianping.com/search/category/7/70/g33786' : {'city_id' : '0755', 'shop_type' : 30001},
+        'http://www.dianping.com/search/category/7/70/g33787' : {'city_id' : '0755', 'shop_type' : 30002},
+        'http://www.dianping.com/search/category/7/70/g33788' : {'city_id' : '0755', 'shop_type' : 30003},
+        'http://www.dianping.com/search/category/7/70/g33789' : {'city_id' : '0755', 'shop_type' : 30004},
+        'http://www.dianping.com/search/category/7/70/g33790' : {'city_id' : '0755', 'shop_type' : 30005},
+        'http://www.dianping.com/search/category/7/70/g33791' : {'city_id' : '0755', 'shop_type' : 30006},
+        'http://www.dianping.com/search/category/7/70/g2982'  : {'city_id' : '0755', 'shop_type' : 30007},
+        'http://www.dianping.com/search/category/7/70/g2984'  : {'city_id' : '0755', 'shop_type' : 30008},
+        'http://www.dianping.com/search/category/7/70/g2988'  : {'city_id' : '0755', 'shop_type' : 30009},
+        'http://www.dianping.com/search/category/7/70/g2992'  : {'city_id' : '0755', 'shop_type' : 30010},
+        'http://www.dianping.com/search/category/7/70/g2994'  : {'city_id' : '0755', 'shop_type' : 30011},
+        'http://www.dianping.com/search/category/7/70/g27763' : {'city_id' : '0755', 'shop_type' : 31000},
 
         # 幼儿外语
-        'http://www.dianping.com/search/category/1/70/g33780' : {'city_id' : '021', 'shop_type' : 20001},
-        'http://www.dianping.com/search/category/1/70/g33781' : {'city_id' : '021', 'shop_type' : 20002},
-        'http://www.dianping.com/search/category/1/70/g33782' : {'city_id' : '021', 'shop_type' : 20003},
-        'http://www.dianping.com/search/category/1/70/g33783' : {'city_id' : '021', 'shop_type' : 20004},
-        'http://www.dianping.com/search/category/1/70/g33784' : {'city_id' : '021', 'shop_type' : 20005},
-        'http://www.dianping.com/search/category/1/70/g33785' : {'city_id' : '021', 'shop_type' : 20006},
-        'http://www.dianping.com/search/category/1/70/g27762' : {'city_id' : '021', 'shop_type' : 21000},
+        'http://www.dianping.com/search/category/7/70/g33780' : {'city_id' : '0755', 'shop_type' : 20001},
+        'http://www.dianping.com/search/category/7/70/g33781' : {'city_id' : '0755', 'shop_type' : 20002},
+        'http://www.dianping.com/search/category/7/70/g33782' : {'city_id' : '0755', 'shop_type' : 20003},
+        'http://www.dianping.com/search/category/7/70/g33783' : {'city_id' : '0755', 'shop_type' : 20004},
+        'http://www.dianping.com/search/category/7/70/g33784' : {'city_id' : '0755', 'shop_type' : 20005},
+        'http://www.dianping.com/search/category/7/70/g33785' : {'city_id' : '0755', 'shop_type' : 20006},
+        'http://www.dianping.com/search/category/7/70/g27762' : {'city_id' : '0755', 'shop_type' : 21000},
 
         # 早教中心
-        'http://www.dianping.com/search/category/1/70/g33768' : {'city_id' : '021', 'shop_type' : 10001},
-        'http://www.dianping.com/search/category/1/70/g33769' : {'city_id' : '021', 'shop_type' : 10002},
-        'http://www.dianping.com/search/category/1/70/g33770' : {'city_id' : '021', 'shop_type' : 10003},
-        'http://www.dianping.com/search/category/1/70/g33771' : {'city_id' : '021', 'shop_type' : 10004},
-        'http://www.dianping.com/search/category/1/70/g33772' : {'city_id' : '021', 'shop_type' : 10005},
-        'http://www.dianping.com/search/category/1/70/g33773' : {'city_id' : '021', 'shop_type' : 10006},
-        'http://www.dianping.com/search/category/1/70/g33774' : {'city_id' : '021', 'shop_type' : 10007},
-        'http://www.dianping.com/search/category/1/70/g27761' : {'city_id' : '021', 'shop_type' : 11000},
+        'http://www.dianping.com/search/category/7/70/g33768' : {'city_id' : '0755', 'shop_type' : 10001},
+        'http://www.dianping.com/search/category/7/70/g33769' : {'city_id' : '0755', 'shop_type' : 10002},
+        'http://www.dianping.com/search/category/7/70/g33770' : {'city_id' : '0755', 'shop_type' : 10003},
+        'http://www.dianping.com/search/category/7/70/g33771' : {'city_id' : '0755', 'shop_type' : 10004},
+        'http://www.dianping.com/search/category/7/70/g33772' : {'city_id' : '0755', 'shop_type' : 10005},
+        'http://www.dianping.com/search/category/7/70/g33773' : {'city_id' : '0755', 'shop_type' : 10006},
+        'http://www.dianping.com/search/category/7/70/g33774' : {'city_id' : '0755', 'shop_type' : 10007},
+        'http://www.dianping.com/search/category/7/70/g27761' : {'city_id' : '0755', 'shop_type' : 11000},
 
     }
 

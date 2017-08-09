@@ -50,8 +50,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
         # 亲子旅游
 	'http://www.dianping.com/search/category/7/70/g33808', # 亲子旅游
         # 其他亲子服务
-	'http://www.dianping.com/search/category/7/70/g33810', # 其他亲子服务
-	'http://www.dianping.com/search/category/7/70/g2833', # 婴儿理发
+	'http://www.dianping.com/search/category/7/70/g27769', # 更多的亲子服务
 
         # 幼儿教育
 	'http://www.dianping.com/search/category/7/70/g188', # 所有的幼儿教育
@@ -67,6 +66,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
         # 其他亲子服务
         'http://www.dianping.com/search/category/7/70/g33810' : {'city_id' : '0755', 'shop_type' : 90001},
         'http://www.dianping.com/search/category/7/70/g2833'  : {'city_id' : '0755', 'shop_type' : 90002},
+        'http://www.dianping.com/search/category/7/70/g27769'  : {'city_id' : '0755', 'shop_type' : 91000},
         # 亲子旅游
         'http://www.dianping.com/search/category/7/70/g33808' : {'city_id' : '0755', 'shop_type' : 80001},
         # 亲子游乐
