@@ -44,7 +44,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 10
 
 # 下载超时
 DOWNLOAD_TIMEOUT = 5
@@ -53,10 +53,10 @@ DOWNLOAD_TIMEOUT = 5
 #CONCURRENT_ITEMS = 100
 
 # 默认Request并发数：16
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 5
 
 # 默认每个域名的并发数：8
-CONCURRENT_REQUESTS_PER_DOMAIN = 8
+CONCURRENT_REQUESTS_PER_DOMAIN = 3
 
 # 每个IP的最大并发数：0表示忽略
 #CONCURRENT_REQUESTS_PER_IP = 0
