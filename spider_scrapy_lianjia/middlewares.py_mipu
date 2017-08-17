@@ -26,12 +26,24 @@ class RandomUserAgent(object):
 
 class ProxyMiddleware(object):
     def process_request(self, request, spider):
-        request.meta['proxy'] = "http://http-dyn.abuyun.com:9020"
+        r=redis.Redis(host='127.0.0.1',port=6379,db=1)
+        ip_json = r.get("ip_list")
+        ip_list = simplejson.loads(ip_json)
+        while True:
+            ip_info = random.choice(ip_list)
+            if ip_info['ip:port'].find("127.0.0.1") == -1:
+                break
+
+        proxy = ip_info['ip:port']
+        print "proxy_server = %s" % (proxy)
+        request.meta['proxy'] = "http://%s" % proxy
+        return 
+
+        request.meta['proxy'] = "http://%s" % proxy
         # 添加账号密码，如果不用账号密码，则下面的代码删除即可
-        proxy_user_pass = "HX4OS8905X90183D:C3127131D399C059"
+        proxy_user_pass = "hequan:2mjhm256"
         encoded_user_pass = base64.encodestring(proxy_user_pass)
         request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
-        print "proxy = %s" (request.meta['proxy'])
 
         return
 

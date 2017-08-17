@@ -36,9 +36,6 @@ class dianping_xmt_baby_spider(CrawlSpider):
         "4"     : "020", # 广州
         "7"     : "0755", # 深圳
         "8"     : "028", # 成都
-        "5"     : "025", # 南京
-        "15"    : "0592", # 厦门
-        "14"    : "0591", # 福州
 
         "267"     : "0871", # 昆明
         "206"     : "0756", # 珠海
@@ -70,6 +67,9 @@ class dianping_xmt_baby_spider(CrawlSpider):
         "9"     : "023", # 重庆
         "10"    : "022", # 天津
         "3"     : "0571", # 杭州
+        "14"    : "0591", # 福州
+        "15"    : "0592", # 厦门
+        "5"     : "025", # 南京
     }
 
     shop_type_map = {
@@ -108,6 +108,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
                 yield scrapy.Request(cat_url, callback=self.parse_category, meta={'shop_type':shop_type, 'city_id' : city_id})
 
     def parse_category(self, response):
+        self.log("=================================================")
         sel = Selector(response)
         shop_type = response.meta['shop_type']
         city_id = response.meta['city_id']
@@ -127,6 +128,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
             yield scrapy.Request('http://www.dianping.com' + uri, callback=self.parse_list, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
 
     def parse_list(self, response):
+        self.log("=================================================")
         sel = Selector(response)
 
         shop_type = response.meta['shop_type']
@@ -134,6 +136,8 @@ class dianping_xmt_baby_spider(CrawlSpider):
         city_id = response.meta['city_id']
 
         http_status = response.status
+
+        self.log("http_url = %s" % cat_url)
         self.log("http_status = %s proxy = %s" % (http_status, response.meta['proxy']))
 
         self.log("shop_type = %s" % shop_type)
@@ -208,13 +212,8 @@ class dianping_xmt_baby_spider(CrawlSpider):
 
 
         self.log("shop_name = %s" % shop_name)
-
         self.log("shop_addr = %s" % shop_addr)
-
-
         self.log("shop_mobile = %s" % shop_mobile)
-
-
         self.log("shop_intro = %s" % shop_intro)
 
         item['chenshi_name']    = chenshi_name
