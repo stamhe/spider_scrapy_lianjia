@@ -5,8 +5,10 @@ import random
 import base64
 import requests
 import simplejson
+import redis
 
 from settings import PROXIES
+from time import ctime,sleep
 
 class RandomUserAgent(object):
     """Randomly rotate user agents based on a list of predefined ones"""
@@ -24,18 +26,9 @@ class RandomUserAgent(object):
 
 class ProxyMiddleware(object):
     def process_request(self, request, spider):
-        ret = requests.get('http://127.0.0.1:5000/get_all/')
-
-        ip_json = ret.text
-        ip_list = simplejson.loads(ip_json)
-        proxy = random.choice(ip_list)
-        print "url = %s proxy_server = %s" % (request.url, proxy)
-        request.meta['proxy'] = "http://%s" % proxy
-        return None
-
-        request.meta['proxy'] = "http://%s" % proxy
+        request.meta['proxy'] = "http://http-dyn.abuyun.com:9020"
         # 添加账号密码，如果不用账号密码，则下面的代码删除即可
-        proxy_user_pass = "hequan:2mjhm256"
+        proxy_user_pass = "HX4OS8905X90183D:C3127131D399C059"
         encoded_user_pass = base64.encodestring(proxy_user_pass)
         request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
 
