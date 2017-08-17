@@ -39,7 +39,6 @@ class dianping_xmt_baby_spider(CrawlSpider):
         "5"     : "025", # 南京
         "15"    : "0592", # 厦门
         "14"    : "0591", # 福州
-        "3"     : "0571", # 杭州
 
         "267"     : "0871", # 昆明
         "206"     : "0756", # 珠海
@@ -70,6 +69,7 @@ class dianping_xmt_baby_spider(CrawlSpider):
         "6"     : "0512", # 苏州
         "9"     : "023", # 重庆
         "10"    : "022", # 天津
+        "3"     : "0571", # 杭州
     }
 
     shop_type_map = {

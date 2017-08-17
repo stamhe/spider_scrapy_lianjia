@@ -44,10 +44,10 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 10
+DOWNLOAD_DELAY = 5
 
 # 下载超时
-DOWNLOAD_TIMEOUT = 5
+DOWNLOAD_TIMEOUT = 10
 
 # 默认Item并发数：100
 #CONCURRENT_ITEMS = 100
@@ -82,8 +82,8 @@ COOKIES_ENABLED = False
 
 # 是否可以重试
 RETRY_ENABLED = True
-RETRY_TIMES = 10
-RETRY_HTTP_CODES = [407,500,502,503,504, 403]
+RETRY_TIMES = 5
+RETRY_HTTP_CODES = [407,500,502,503,504, 403, 404]
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
