@@ -31,6 +31,7 @@ class ProxyMiddleware(object):
         proxy_user_pass = "HX4OS8905X90183D:C3127131D399C059"
         encoded_user_pass = base64.encodestring(proxy_user_pass)
         request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
+        #print "proxy = %s" (request.meta['proxy'])
 
         return
 
