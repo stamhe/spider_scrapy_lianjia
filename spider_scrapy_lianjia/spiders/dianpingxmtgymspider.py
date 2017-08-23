@@ -17,17 +17,17 @@ sys.setdefaultencoding('utf8')
 
 from spider_scrapy_lianjia.items import SpiderDianpingXmtItem
 
-class dianping_xmt_baby_spider(CrawlSpider):
+class dianping_gym_spider(CrawlSpider):
     # 爬虫的识别名称，必须是唯一的，在不同的爬虫中你必须定义不同的名字
-    name = "dianping_xmt_baby_spider"    # 设置爬虫名称
+    name = "dianping_gym_spider"    # 设置爬虫名称
 
     # 搜索的域名范围，也就是爬虫的约束区域，规定爬虫只爬取这个域名下的网页
     allowed_domains = ["dianping.com"] # 设置允许的域名
 
     # 爬取的url列表，爬虫从这里开始抓取数据，所以，第一次下载的数据将会从这些urls开始，其他子url将会从这些起始url中继承性生成
     start_urls = [
-        # 早教中心
-        'http://www.dianping.com/search/category/1/70/g27761', # 所有的早教
+        # 健身中心
+        'http://www.dianping.com/search/category/1/70/g27761', 
     ]
 
     city_map = {
@@ -35,8 +35,6 @@ class dianping_xmt_baby_spider(CrawlSpider):
         "2"     : "010", # 北京
         "4"     : "020", # 广州
         "7"     : "0755", # 深圳
-
-
         "13"    : "0510", # 无锡
         "6"     : "0512", # 苏州
         "9"     : "023", # 重庆
@@ -74,38 +72,41 @@ class dianping_xmt_baby_spider(CrawlSpider):
     }
 
     shop_type_map = {
-        # 幼儿教育
-        'g188'   : 110000,
-        # 其他亲子服务
-        'g27769' : 91000,
-        # 亲子旅游
-        'g33808' : 80001,
-        # 亲子游乐
-        'g161' : 71000,
-
-        # 婴儿游泳
-        'g27767' : 60001,
-
-        # 托班/托儿所
-        'g20009' : 51000,
-        # 幼儿园
-        'g189' : 41000,
-
-        # 幼儿才艺
-        'g27763' : 31000,
-
-        # 幼儿外语
-        'g27762' : 21000,
-
-        # 早教中心
-        'g27761' : 11000,
+        # 健身中心
+        'g147'   : 10000,
+        # 游泳馆
+        'g151' : 10001,
+        # 瑜伽
+        'g148' : 10002,
+        # 漂流
+        'g2838' : 10003,
+        # 滑雪
+        'g27852' : 10004,
+        # 舞蹈
+        'g149' : 10005,
+        # 羽毛球馆
+        'g152' : 10006,
+        # 桌球馆
+        'g156' : 10007,
+        # 体育场馆
+        'g150' : 10008,
+        # 武术场馆
+        'g6701' : 10009,
+        # 篮球场
+        'g146' : 10010,
+        # 保龄球馆
+        'g155' : 10011,
+        # 高尔夫球场馆
+        'g154' : 10012,
+        # 足球场
+        'g6702' : 10013,
     }
 
     def parse(self, response):
         sel = Selector(response)
         for bianhao,city_id in self.city_map.items():
             for cat_id,shop_type in self.shop_type_map.items():
-                cat_url = 'http://www.dianping.com/search/category/' + bianhao + '/70/' + cat_id
+                cat_url = 'http://www.dianping.com/search/category/' + bianhao + '/45/' + cat_id
                 yield scrapy.Request(cat_url, callback=self.parse_category, meta={'shop_type':shop_type, 'city_id' : city_id})
 
     def parse_category(self, response):
@@ -121,10 +122,11 @@ class dianping_xmt_baby_spider(CrawlSpider):
 
         self.log("shop_type = %s" % shop_type)
         items = []
-        shop_list = sel.xpath('//li[@class="t-item-box t-district J_li"]/div[@class="t-item"]/div[@class="t-list"]/ul/li')
-	self.log("shop_list_len = %d" % len(shop_list))
-        for shop in shop_list:
-            uri = shop.xpath('a/@href').extract()[0]
+        #shop_list = sel.xpath('//li[@class="t-item-box t-district J_li"]/div[@class="t-item"]/div[@class="t-list"]/ul/li')
+        region_list = sel.xpath('//div[@id="region-nav"]/a')
+	self.log("region_list_len = %d" % len(region_list))
+        for region in region_list:
+            uri = region.xpath('@href').extract()[0]
             self.log("page_uri = %s" % uri)
             yield scrapy.Request('http://www.dianping.com' + uri, callback=self.parse_list, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
 
@@ -143,18 +145,18 @@ class dianping_xmt_baby_spider(CrawlSpider):
 
         self.log("shop_type = %s" % shop_type)
         items = []
-        shop_list = sel.xpath('//ul[@class="shop-list"]/li')
+        shop_list = sel.xpath('//div[@id="shop-all-list"]/ul/li')
         for shop in shop_list:
-            uri = shop.xpath('div/p/a[@class="shopname"]/@href').extract()[0]
+            uri = shop.xpath('div[@class="txt"]/div[@class="tit"]/a/@href').extract()[0]
             self.log("shop_uri = %s" % uri)
             yield scrapy.Request('http://www.dianping.com' + uri, callback=self.parse_content, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
 
         ### 是否还有下一页，如果有，则继续
-        next_page = sel.xpath('//a[@class="NextPage"]')
+        next_page = sel.xpath('//a[@class="next"]')
         if len(next_page) <= 0:
             return
 
-        next_page = sel.xpath('//a[@class="NextPage"]/@href').extract()[0].strip()
+        next_page = sel.xpath('//a[@class="next"]/@href').extract()[0].strip()
         self.log("next_page = %s" % next_page)
         if next_page:
             self.log("next_page_uri = %s" % next_page)
@@ -178,38 +180,24 @@ class dianping_xmt_baby_spider(CrawlSpider):
         self.log("shop_type = %s" % shop_type)
         self.log("http_status = %s" % http_status)
 
-	x = sel.xpath('//div[@class="block shop-info"]')
+	x = sel.xpath('//div[@id="basic-info"]')
         if len(x) > 0:
-            shop_name   = sel.xpath('//div[@class="block shop-info"]/div/div[@class="shop-name"]/h1[@class="shop-title"]/text()').extract()[0].strip()
+            shop_name   = x[0].xpath('h1[@class="shop-name"]/text()').extract()[0].strip()
 
-            shop_addr   = x[0].xpath('div/div[@class="desc-list"]/dl[@class="shopDeal-Info-address"]/dd[@class="shop-info-content"]/span[@itemprop="street-address"]/text()').extract()[0].strip()
+            shop_addr   = x[0].xpath('div[@class="expand-info address"]/span[@itemprop="street-address"]/text()').extract()[0].strip()
 
             # shop_mobile
-            x2 = x[0].xpath('div/div[@class="desc-list"]/dl/dd[@class="shop-info-content"]/a[@id="J-showPhoneNumber"]')
+            x2 = x[0].xpath('p[@class="expand-info tel"]/span[@class="item"]')
             if len(x2) > 0:
-                shop_mobile = x2[0].xpath('@data-real').extract()[0].strip()
+                shop_mobile = x2[0].xpath('text()').extract()[0].strip()
             else:
                 shop_mobile = ""
 
             # shop_intro
+            #shop_intro  = x[0].xpath('div[@class="other J-other Hide"]/p[@class="')
             shop_intro  = ""
         else:
-            shop_name   = sel.xpath('//div[@class="shop-info"]/div[@class="shop-name"]/h1[@class="shop-title"]/text()').extract()[0].strip()
-            shop_addr   = sel.xpath('//div[@class="shop-info"]/div[@class="shop-addr"]/span/@title').extract()[0].strip()
-
-            # shop_mobile
-            x = sel.xpath('//div[@class="shop-info"]/div[@class="shopinfor"]/p/span')
-            if len(x) == 0:
-                shop_mobile = ""
-            else:
-                shop_mobile = x[0].xpath('text()').extract()[0].strip()
-
-            # shop_intro 
-            x = sel.xpath('//div[@class="block_all"]/div[@class="block_right"]/span')
-            if len(x) < 2:
-                shop_intro=""
-            else:
-                shop_intro = x[0].xpath('text()').extract()[0].strip()
+            return item
 
 
         self.log("shop_name = %s" % shop_name)

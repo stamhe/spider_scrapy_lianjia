@@ -50,6 +50,16 @@ class SpiderScrapyLianjiaPipeline(object):
             data.append(item['shop_intro'])
             data.append(date_time)
             cursor.execute('replace into t_dianping_xmt_spider (chenshi_name, shop_type, shop_url, shop_name, shop_addr, shop_mobile, shop_intro, spider_date) values (%s, %s, %s, %s, %s, %s, %s, %s)', data)
+        elif spider.name == 'dianping_gym_spider':
+            data.append(item['chenshi_name'])
+            data.append(item['shop_type'])
+            data.append(item['shop_url'])
+            data.append(item['shop_name'])
+            data.append(item['shop_addr'])
+            data.append(item['shop_mobile'])
+            data.append(item['shop_intro'])
+            data.append(date_time)
+            cursor.execute('replace into t_dianping_gym_spider (chenshi_name, shop_type, shop_url, shop_name, shop_addr, shop_mobile, shop_intro, spider_date) values (%s, %s, %s, %s, %s, %s, %s, %s)', data)
 
         cursor.close()
         return item
