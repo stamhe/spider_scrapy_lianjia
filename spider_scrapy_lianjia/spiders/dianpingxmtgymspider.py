@@ -31,6 +31,14 @@ class dianping_gym_spider(CrawlSpider):
     ]
 
     city_map = {
+        "345"     : "0899", # 三亚
+        "213"     : "0752", # 惠州
+        "219"     : "0769", # 东莞
+        "134"     : "0791", # 南昌
+
+        "206"     : "0756", # 珠海
+        "267"     : "0871", # 昆明
+
         "1"     : "021", # 上海
         "2"     : "010", # 北京
         "4"     : "020", # 广州
@@ -47,14 +55,16 @@ class dianping_gym_spider(CrawlSpider):
         "22"     : "0531", # 济南
         "16"     : "027", # 武汉
         "17"     : "029", # 西安
+
+        "70"     : "0431", # 长春
+        "24"     : "0311", # 石家庄
+        "35"     : "0351", # 太原
+        "18"    : "024", # 沈阳
+
         "160"     : "0371", # 郑州
         "344"     : "0731", # 长沙
         "8"     : "028", # 成都
         "19"     : "0411", # 大连
-        "18"    : "024", # 沈阳
-        "70"     : "0431", # 长春
-        "24"     : "0311", # 石家庄
-        "35"     : "0351", # 太原
         "110"     : "0551", # 合肥
         "11"     : "0574", # 宁波
         "94"     : "0513", # 南通
@@ -63,12 +73,7 @@ class dianping_gym_spider(CrawlSpider):
         "224"     : "0771", # 南宁
         "101"     : "0577", # 温州
         "23"     : "0898", # 海口
-        "345"     : "0899", # 三亚
-        "213"     : "0752", # 惠州
-        "219"     : "0769", # 东莞
-        "134"     : "0791", # 南昌
-        "206"     : "0756", # 珠海
-        "267"     : "0871", # 昆明
+
     }
 
     shop_type_map = {
@@ -128,7 +133,8 @@ class dianping_gym_spider(CrawlSpider):
         for region in region_list:
             uri = region.xpath('@href').extract()[0]
             self.log("page_uri = %s" % uri)
-            yield scrapy.Request('http://www.dianping.com' + uri, callback=self.parse_list, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
+            #yield scrapy.Request('http://www.dianping.com' + uri, callback=self.parse_list, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
+            yield scrapy.Request(uri, callback=self.parse_list, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
 
     def parse_list(self, response):
         self.log("=================================================")
@@ -139,6 +145,8 @@ class dianping_gym_spider(CrawlSpider):
         city_id = response.meta['city_id']
 
         http_status = response.status
+        if response.url == 'http://gd.chinavnet.com':
+            return
 
         self.log("http_url = %s" % cat_url)
         self.log("http_status = %s proxy = %s" % (http_status, response.meta['proxy']))
@@ -149,7 +157,8 @@ class dianping_gym_spider(CrawlSpider):
         for shop in shop_list:
             uri = shop.xpath('div[@class="txt"]/div[@class="tit"]/a/@href').extract()[0]
             self.log("shop_uri = %s" % uri)
-            yield scrapy.Request('http://www.dianping.com' + uri, callback=self.parse_content, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
+            #yield scrapy.Request('http://www.dianping.com' + uri, callback=self.parse_content, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
+            yield scrapy.Request(uri, callback=self.parse_content, meta={'shop_type':shop_type, 'cat_url' : cat_url, 'city_id' : city_id})
 
         ### 是否还有下一页，如果有，则继续
         next_page = sel.xpath('//a[@class="next"]')
@@ -160,7 +169,7 @@ class dianping_gym_spider(CrawlSpider):
         self.log("next_page = %s" % next_page)
         if next_page:
             self.log("next_page_uri = %s" % next_page)
-            yield scrapy.Request('http://www.dianping.com' + next_page, callback=self.parse_list, meta={'shop_type' : shop_type, 'cat_url' : cat_url,  'city_id' : city_id})
+            yield scrapy.Request(next_page, callback=self.parse_list, meta={'shop_type' : shop_type, 'cat_url' : cat_url,  'city_id' : city_id})
 
     # 解析的方法，调用的时候传入从每一个url传回的response对象作为唯一参数，负责解析并获取抓取的数据(解析为item)，跟踪更多的url
     def parse_content(self, response):
