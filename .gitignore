@@ -49,4 +49,4 @@ wap/web/sitemap/*
 # 忽略测试文件
 saas/controllers/test
 
-spider_scrapy_lianjia/pipelines.py
+*.pyc
