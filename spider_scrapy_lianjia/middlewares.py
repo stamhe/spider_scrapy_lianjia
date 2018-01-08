@@ -26,27 +26,13 @@ class RandomUserAgent(object):
 
 class ProxyMiddleware(object):
     def process_request(self, request, spider):
+        # 阿布云
         request.meta['proxy'] = "http://http-dyn.abuyun.com:9020"
         # 添加账号密码，如果不用账号密码，则下面的代码删除即可
         proxy_user_pass = "HX4OS8905X90183D:C3127131D399C059"
         encoded_user_pass = base64.encodestring(proxy_user_pass)
         request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
         #print "proxy = %s" (request.meta['proxy'])
-
-        return
-
-        proxy = random.choice(PROXIES)
-        request.meta['proxy'] = "http://%s" % proxy
-        return
-
-        if proxy['user_pass'] is not None:
-            request.meta['proxy'] = "http://%s" % proxy['ip_port']
-            encoded_user_pass = base64.encodestring(proxy['user_pass'])
-            request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
-            print "**************ProxyMiddleware have pass************" + proxy['ip_port']
-        else:
-            print "**************ProxyMiddleware no pass************" + proxy['ip_port']
-            request.meta['proxy'] = "http://%s" % proxy['ip_port']
 
         return
 
