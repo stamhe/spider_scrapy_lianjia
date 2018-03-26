@@ -31,49 +31,7 @@ class dianping_gym_spider(CrawlSpider):
     ]
 
     city_map = {
-        "345"     : "0899", # 三亚
-        "213"     : "0752", # 惠州
-        "219"     : "0769", # 东莞
-        "134"     : "0791", # 南昌
-
-        "206"     : "0756", # 珠海
-        "267"     : "0871", # 昆明
-
-        "1"     : "021", # 上海
-        "2"     : "010", # 北京
-        "4"     : "020", # 广州
-        "7"     : "0755", # 深圳
-        "13"    : "0510", # 无锡
-        "6"     : "0512", # 苏州
-        "9"     : "023", # 重庆
-        "10"    : "022", # 天津
-        "3"     : "0571", # 杭州
-        "14"    : "0591", # 福州
-        "15"    : "0592", # 厦门
-        "5"     : "025", # 南京
-        "21"     : "0532", # 青岛
-        "22"     : "0531", # 济南
-        "16"     : "027", # 武汉
-        "17"     : "029", # 西安
-
-        "70"     : "0431", # 长春
-        "24"     : "0311", # 石家庄
-        "35"     : "0351", # 太原
-        "18"    : "024", # 沈阳
-
-        "160"     : "0371", # 郑州
-        "344"     : "0731", # 长沙
-        "8"     : "028", # 成都
-        "19"     : "0411", # 大连
-        "110"     : "0551", # 合肥
-        "11"     : "0574", # 宁波
-        "94"     : "0513", # 南通
-        "152"     : "0631", # 威海
-        "148"     : "0535", # 烟台
-        "224"     : "0771", # 南宁
-        "101"     : "0577", # 温州
-        "23"     : "0898", # 海口
-
+        "sanya"     : "0899", # 三亚
     }
 
     shop_type_map = {
@@ -111,7 +69,8 @@ class dianping_gym_spider(CrawlSpider):
         sel = Selector(response)
         for bianhao,city_id in self.city_map.items():
             for cat_id,shop_type in self.shop_type_map.items():
-                cat_url = 'http://www.dianping.com/search/category/' + bianhao + '/45/' + cat_id
+                #cat_url = 'http://www.dianping.com/search/category/' + bianhao + '/45/' + cat_id
+                cat_url = 'http://www.dianping.com/' + bianhao + '/ch45/' + cat_id
                 yield scrapy.Request(cat_url, callback=self.parse_category, meta={'shop_type':shop_type, 'city_id' : city_id})
 
     def parse_category(self, response):
