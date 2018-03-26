@@ -52,7 +52,13 @@ for city_name in citylist:
         
         for  item1 in rsp_data['pois']:
             cursor=conn.cursor()
-            shop_addr = item1['pname'] + item1['cityname'] + item1['adname'] + item1['address']
+            print "page = %d offset = %d city_name = %s address = %s" % (page, offset, item1['cityname'], item1['address'])
+            if item1['address']:
+                addr = item1['address']
+            else:
+                addr = ""
+            
+            shop_addr = item1['pname'] + item1['cityname'] + item1['adname'] + addr
             shop_mobile = ""
             if item1['tel']:
                 shop_mobile = item1['tel']
