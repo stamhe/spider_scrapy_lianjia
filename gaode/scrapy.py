@@ -50,6 +50,9 @@ for city_name in citylist:
         if rsp_data['status'] == 0:
             break
         
+        if not rsp_data['pois']:
+            break
+        
         for  item1 in rsp_data['pois']:
             cursor=conn.cursor()
             print "page = %d offset = %d city_name = %s address = %s" % (page, offset, item1['cityname'], item1['address'])
