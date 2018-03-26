@@ -30,6 +30,8 @@ for city_name in citylist:
     #city_name = '上海'
     offset = 50
     page = 1
+    keywords = '健身'
+    shop_type=10000
     
     while True:
         params = {
@@ -37,7 +39,7 @@ for city_name in citylist:
             'output' : 'json',
             'page' : page,
             'offset' : offset,
-            'keywords' : '健身',
+            'keywords' : keywords,
             'city' : city_name
         }
         
@@ -70,7 +72,7 @@ for city_name in citylist:
                 
             item = {
                 "chenshi_name" : city_name,
-                "shop_type" : "10001", 
+                "shop_type" : shop_type,
                 "shop_url" : shop_addr,
                 "shop_name" : item1['name'],
                 "shop_addr" : shop_addr,
